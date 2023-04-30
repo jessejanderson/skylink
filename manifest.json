@@ -1,22 +1,14 @@
 {
   "manifest_version": 3,
-  "name": "DID Detector",
+  "name": "Bluesky DID Detector",
   "version": "1.0",
-  "description": "Detects Decentralized Identifiers (DIDs) in a domain's TXT records and updates the icon.",
+  "author": "jesse@adhdjesse.com",
   "action": {
-    "default_icon": {
-      "48": "logo48_gray.png",
-      "128": "logo128_gray.png"
-    }
+    "default_icon": { "48": "logo48_gray.png", "128": "logo128_gray.png" }
   },
+  "default_locale": "en",
+  "description": "Detects Decentralized Identifiers (DIDs) in a domain's TXT records and links to the associated Bluesky profile.",
   "permissions": ["activeTab", "tabs"],
-  "background": {
-    "service_worker": "background.js"
-  },
-  "content_scripts": [
-    {
-      "matches": ["<all_urls>"],
-      "js": ["content.js"]
-    }
-  ]
+  "background": { "service_worker": "background.js" },
+  "content_scripts": [{ "matches": ["<all_urls>"], "js": ["content.js"] }]
 }
