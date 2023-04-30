@@ -1,5 +1,7 @@
 const tabsWithDID = new Set()
 
+const bskyAppUrl = "https://staging.bsky.app"
+
 function setIcon(tabId, iconName) {
   chrome.action.setIcon({ path: iconName, tabId })
 }
@@ -24,7 +26,7 @@ chrome.action.onClicked.addListener((tab) => {
   if (tabsWithDID.has(tab.id)) {
     chrome.tabs.sendMessage(tab.id, { type: "GET_DOMAIN" }, (response) => {
       if (response && response.domain) {
-        const newUrl = `https://staging.bsky.app/profile/${response.domain}`
+        const newUrl = `${bskyAppUrl}/profile/${response.domain}`
         chrome.tabs.create({ url: newUrl })
       }
     })
