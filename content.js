@@ -21,3 +21,9 @@ async function checkForDID(domain) {
     chrome.runtime.sendMessage({ type: "DID_NOT_FOUND" })
   }
 })()
+
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  if (message.type === "GET_DOMAIN") {
+    sendResponse({ domain: getDomainName() })
+  }
+})

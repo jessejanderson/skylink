@@ -4,8 +4,10 @@
   "version": "1.0",
   "description": "Detects Decentralized Identifiers (DIDs) in a domain's TXT records and updates the icon.",
   "action": {
-    "default_popup": "popup/build/index.html",
-    "default_icon": { "48": "logo48_gray.png", "128": "logo128_gray.png" }
+    "default_icon": {
+      "48": "logo48_gray.png",
+      "128": "logo128_gray.png"
+    }
   },
   "permissions": ["activeTab", "tabs"],
   "background": {
