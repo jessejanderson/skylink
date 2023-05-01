@@ -1,4 +1,4 @@
-# Skylink - Bluesky DID Detector
+# SkyLink - Bluesky DID Detector
 
 [![Chrome Web Store](https://img.shields.io/chrome-web-store/v/aflpfginfpjhanhkmdpohpggpolfopmb)](https://chrome.google.com/webstore/detail/skylink-bluesky-did-detector/aflpfginfpjhanhkmdpohpggpolfopmb)
 
