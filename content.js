@@ -1,5 +1,6 @@
 function getDomainName() {
-  return window.location.hostname
+  const hostname = window.location.hostname
+  return hostname.replace(/^www\./, "")
 }
 
 async function checkForDID(domain) {
