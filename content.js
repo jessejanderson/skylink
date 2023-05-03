@@ -4,20 +4,25 @@ function getDomainName() {
 }
 
 async function checkForDID(domain) {
+  // We use Google's DNS over HTTPS API to resolve the TXT record
   const response = await fetch(
     `https://dns.google/resolve?name=_atproto.${domain}&type=TXT`
   )
   const data = await response.json()
 
+  // We use the TXT record type to avoid CORS issues
   const records = data?.Answer?.filter((record) => record.type === 16) || []
 
+  // We filter out all records that are not TXT records
   const didRecord = records.find((record) =>
     record.data.includes("did=did:plc:")
   )
 
+  // We return the DID if we found one
   return didRecord ? didRecord.data.replace("did=", "") : null
 }
 
+// We check for a DID on the current domain
 ;(async function () {
   const domain = getDomainName()
   const did = await checkForDID(domain)
@@ -29,6 +34,7 @@ async function checkForDID(domain) {
   }
 })()
 
+// We listen for messages from the background script
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.type === "GET_DID") {
     checkForDID(getDomainName())
