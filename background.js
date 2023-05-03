@@ -24,11 +24,11 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
 chrome.action.onClicked.addListener((tab) => {
   if (tabsWithDID.has(tab.id)) {
-    chrome.tabs.sendMessage(tab.id, { type: "GET_DOMAIN" }, (response) => {
-      if (response && response.domain) {
-        const newUrl = `${bskyAppUrl}/profile/${response.domain}`
-        chrome.tabs.create({ url: newUrl })
-      }
-    })
+    chrome.tabs.sendMessage(tab.id, { type: "GET_DID" }, function (response) {
+        if (response && response.did) {
+          const newUrl = `${bskyAppUrl}/profile/${response.did}`
+          chrome.tabs.create({ url: newUrl })
+        }
+      })
   }
 })
