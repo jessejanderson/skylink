@@ -17,3 +17,7 @@ When a profile is detected, the icon lights up blue and clicking it will take yo
 As of April 30, 2023, Bluesky is still invite-only and the web app is at https://staging.bsky.app.
 
 You can find me there at [@adhdjesse.com](https://staging.bsky.app/profile/adhdjesse.com)
+
+**Contributors:**
+
+[@danielhuckmann.com](https://staging.bsky.app/profile/danielhuckmann.com) - Firefox Support & Privacy Consent

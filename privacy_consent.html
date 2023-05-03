@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skylink Privacy Consent</title>
+    <style>
+        html {
+            line-height: 1.15;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            margin: 0;
+        }
+
+        h1 {
+            font-size: 2em;
+            margin: 0.67em 0;
+        }
+
+        a {
+            background-color: transparent;
+        }
+
+        p {
+            margin: 1em 0;
+        }
+
+        ul {
+            margin: 1em 0;
+            padding: 0 0 0 40px;
+        }
+
+        li {
+            list-style-type: disc;
+            margin: 0 0 0.25em 0;
+        }
+
+        button {
+            font-family: inherit;
+            font-size: 100%;
+            line-height: 1.15;
+            margin: 0;
+            overflow: visible;
+            text-transform: none;
+        }
+
+        button::-moz-focus-inner {
+            border-style: none;
+            padding: 0;
+        }
+
+        button:-moz-focusring {
+            outline: 1px dotted ButtonText;
+        }
+        .centered-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+  }
+    </style>
+</head>
+<body>
+    <div class="centered-container">
+    <h1>Privacy Consent for SkyLink - Bluesky DID Detector</h1>
+    <p>While <b>no information is collected by the extension author</b>, this extension makes use of the <a href="https://developers.google.com/speed/public-dns/">Google DNS service</a> for required functionality.</p>
+    <p>The Google DNS service is used because browser extensions do not have native access to DNS, which is needed to lookup the AT PROTO TXT record.</p>
+    <p>A summary of what is collected by Google DNS:
+        <ul>
+            <li>the IP address of your device sending the DNS query</li>
+            <li>Requested domain name</li>
+            <li>Request type (TXT)</li>
+            <li>Request Size</li>
+            <li>Transport protocol (HTTPS)</li>
+            <li>Client's autonomous system number</li>
+            <li>User's geolocation: country, region, and city (no more specific than 1 km² and 1000 users)</li>
+            <li>DNS Response code</li>
+            <li>Google DNS server information</li>
+            <li>Timestamp</li>
+            <li>Processing time</li>
+            <li>Response DNS flags (including AD, CD, DO, RD, and TC)</li>
+            <li>Response size</li>
+            <li>EDNS version</li>
+            <li>EDNS option</li>
+            <li>EDNS Client Subnet (ECS) (IP protocol and prefix length -- excluding the client IP address)</li>
+            <li>Version string corresponding to HTTP path (/resolve)</li>
+            <li>Response HTTP encoding, such as application/dns-message or json</li>
+          </ul>
+    </p>
+    <p><a href="https://developers.google.com/speed/public-dns/privacy" target="_blank">Please Read and accept the full Google DNS privacy policy before using this addon.</a></p>
+    <button id="accept">Accept (Continue)</button>
+    <button id="decline">Decline (Remove Extension)</button>
+    <script src="privacy_consent.js"></script>
+    </div>
+</body>
+</html>
