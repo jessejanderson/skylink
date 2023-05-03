@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- use DID for profile url instead of domain name
+
 ## [1.0.1] - 2023-04-30
 
 ### Fixed

@@ -1,4 +1,4 @@
-const tabsWithDID = new Set()
+const tabsWithDID = new Map()
 
 const bskyAppUrl = "https://staging.bsky.app"
 
@@ -15,7 +15,7 @@ chrome.runtime.onInstalled.addListener(() => {
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.type === "DID_FOUND") {
     setIcon(sender.tab.id, "logo48.png")
-    tabsWithDID.add(sender.tab.id)
+    tabsWithDID.set(sender.tab.id, message.did)
   } else {
     setIcon(sender.tab.id, "logo48_gray.png")
     tabsWithDID.delete(sender.tab.id)
@@ -23,12 +23,9 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 })
 
 chrome.action.onClicked.addListener((tab) => {
-  if (tabsWithDID.has(tab.id)) {
-    chrome.tabs.sendMessage(tab.id, { type: "GET_DOMAIN" }, (response) => {
-      if (response && response.domain) {
-        const newUrl = `${bskyAppUrl}/profile/${response.domain}`
-        chrome.tabs.create({ url: newUrl })
-      }
-    })
+  const did = tabsWithDID.get(tab.id)
+  if (did) {
+    const newUrl = `${bskyAppUrl}/profile/${did}`
+    chrome.tabs.create({ url: newUrl })
   }
 })
