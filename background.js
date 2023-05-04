@@ -2,7 +2,7 @@
 const runtime = typeof browser !== 'undefined' ? browser.runtime : chrome.runtime;
 const tabs = typeof browser !== 'undefined' ? browser.tabs : chrome.tabs;
 const storage = typeof browser !== 'undefined' ? browser.storage.local : chrome.storage.local;
-const action = typeof browser !== 'undefined' ? browser.action : chrome.action;
+const action = typeof browser !== 'undefined' ? browser.browserAction : chrome.action;
 
 // On extension installation, check if privacy consent was already accepted and show it if not
 runtime.onInstalled.addListener(() => {

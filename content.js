@@ -48,8 +48,8 @@ function performAction(privacyConsentAccepted) {
       }
     });
   } else {
-    // If the user hasn't accepted the privacy consent, show the consent page again
-    tabs.create({ url: "privacy_consent.html" });
+    // Send a message to the background script to show the consent page
+    browser.runtime.sendMessage({ type: 'SHOW_CONSENT' });
   }
 }
 
