@@ -2,7 +2,7 @@
 const runtime = typeof browser !== 'undefined' ? browser.runtime : chrome.runtime;
 const tabs = typeof browser !== 'undefined' ? browser.tabs : chrome.tabs;
 const storage = typeof browser !== 'undefined' ? browser.storage.local : chrome.storage.local;
-const browserAction = typeof browser !== 'undefined' ? browser.browserAction : chrome.browserAction;
+const action = typeof browser !== 'undefined' ? browser.action : chrome.action;
 
 // On extension installation, check if privacy consent was already accepted and show it if not
 runtime.onInstalled.addListener(() => {
@@ -28,7 +28,7 @@ const bskyAppUrl = 'https://staging.bsky.app';
 
 // Function to set the extension icon
 function setIcon(tabId, iconName) {
-  browserAction.setIcon({ path: iconName, tabId });
+  action.setIcon({ path: iconName, tabId });
 }
 
 // On extension installation, set the icon to gray for all tabs
@@ -50,7 +50,7 @@ runtime.onMessage.addListener((message, sender, sendResponse) => {
 });
 
 // When the extension icon is clicked, open the profile page if there's a DID
-browserAction.onClicked.addListener((tab) => {
+action.onClicked.addListener((tab) => {
   const did = tabsWithDID.get(tab.id);
   if (did) {
     const newUrl = `${bskyAppUrl}/profile/${did}`;

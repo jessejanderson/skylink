@@ -2,7 +2,7 @@
 
 [![Chrome Web Store](https://img.shields.io/chrome-web-store/v/aflpfginfpjhanhkmdpohpggpolfopmb)](https://chrome.google.com/webstore/detail/skylink-bluesky-did-detector/aflpfginfpjhanhkmdpohpggpolfopmb)
 
-A simple Chrome extension that detects if the current website is connected to a Bluesky user.
+A simple web extension that detects if the current website is connected to a Bluesky user.
 
 Remember the good 'ol days of visiting someone's blog and being delighted when the "RSS" lit up in your browser? This is meant to capture that same magic. No more hunting on a page for a random bird icon to see if you can find their online profile.
 
