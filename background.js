@@ -49,6 +49,15 @@ runtime.onMessage.addListener((message, sender, sendResponse) => {
   }
 });
 
+// Open the consent page if it hasn't been accepted and the user clicks on the extension icon
+action.onClicked.addListener((tab) => {
+  storage.get("privacyConsentAccepted", ({ privacyConsentAccepted }) => {
+    if (typeof privacyConsentAccepted === "undefined" || !privacyConsentAccepted) {
+      tabs.create({ url: "privacy_consent.html" });
+    }
+  });
+});
+
 // When the extension icon is clicked, open the profile page if there's a DID
 action.onClicked.addListener((tab) => {
   const did = tabsWithDID.get(tab.id);

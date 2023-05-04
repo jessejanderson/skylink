@@ -3,7 +3,7 @@ const runtime = typeof browser !== 'undefined' ? browser.runtime : chrome.runtim
 const tabs = typeof browser !== 'undefined' ? browser.tabs : chrome.tabs;
 const storage = typeof browser !== 'undefined' ? browser.storage.local : chrome.storage.local;
 
-// Function to perform actions based on the user's privacy consent
+// Main function to perform actions, but only if the privacy consent has been accepted
 function performAction(privacyConsentAccepted) {
   // If the user has accepted the privacy consent
   if (privacyConsentAccepted) {
@@ -48,8 +48,8 @@ function performAction(privacyConsentAccepted) {
       }
     });
   } else {
-    // Send a message to the background script to show the consent page
-    browser.runtime.sendMessage({ type: 'SHOW_CONSENT' });
+    // Do nothing since the consent form has not been accepted.
+    return;
   }
 }
 
