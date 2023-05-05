@@ -2,7 +2,7 @@
 
 [![Chrome Web Store](https://img.shields.io/chrome-web-store/v/aflpfginfpjhanhkmdpohpggpolfopmb)](https://chrome.google.com/webstore/detail/skylink-bluesky-did-detector/aflpfginfpjhanhkmdpohpggpolfopmb)
 
-A simple Chrome extension that detects if the current website is connected to a Bluesky user.
+A simple web extension that detects if the current website is connected to a Bluesky user.
 
 Remember the good 'ol days of visiting someone's blog and being delighted when the "RSS" lit up in your browser? This is meant to capture that same magic. No more hunting on a page for a random bird icon to see if you can find their online profile.
 
@@ -17,3 +17,7 @@ When a profile is detected, the icon lights up blue and clicking it will take yo
 As of April 30, 2023, Bluesky is still invite-only and the web app is at https://staging.bsky.app.
 
 You can find me there at [@adhdjesse.com](https://staging.bsky.app/profile/adhdjesse.com)
+
+**Contributors:**
+
+[@danielhuckmann.com](https://staging.bsky.app/profile/danielhuckmann.com) - Firefox Support & Privacy Consent

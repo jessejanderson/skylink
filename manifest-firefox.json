@@ -1,0 +1,35 @@
+{
+  "manifest_version": 2,
+  "name": "SkyLink - Bluesky DID Detector",
+  "short_name": "SkyLink",
+  "version": "1.2.0",
+  "author": "jesse@adhdjesse.com",
+  "browser_action": {
+    "default_icon": {
+      "48": "logo48_gray.png",
+      "128": "logo128_gray.png"
+    }
+  },
+  "icons": {
+    "48": "logo48.png",
+    "128": "logo128.png"
+  },
+  "description": "Detects Decentralized Identifiers (DIDs) in a domain's TXT records and links to the associated Bluesky profile.",
+  "permissions": ["activeTab", "tabs", "management", "storage", "<all_urls>"],
+  "content_security_policy": "script-src 'self'; object-src 'self'",
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"]
+    }
+  ],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "jesse@adhdjesse.com",
+      "strict_min_version": "79.0"
+    }
+  }
+}
