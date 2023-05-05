@@ -89,7 +89,7 @@ async function checkForDIDHTTPS(domain) {
 // Map to store tabs with DIDs
 const tabsWithDID = new Map()
 
-// URL of the Bluesky Web Applications
+// URL of the Bluesky Web Application
 const bskyAppUrl = "https://bsky.app"
 
 // Function to set the extension icon
