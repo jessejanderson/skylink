@@ -39,9 +39,9 @@ function performAction(privacyConsentAccepted) {
         const did = await checkForDID(domain)
 
         if (did) {
-          chrome.runtime.sendMessage({ type: "DID_FOUND", did })
+          runtime.sendMessage({ type: "DID_FOUND", did })
         } else {
-          chrome.runtime.sendMessage({ type: "DID_NOT_FOUND" })
+          runtime.sendMessage({ type: "DID_NOT_FOUND" })
         }
       })();
 
