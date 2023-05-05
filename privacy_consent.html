@@ -1,80 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Skylink Privacy Policy</title>
 
     <style>
+      html {
+        line-height: 1.15;
+        -webkit-text-size-adjust: 100%;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+          "Segoe UI Symbol";
+        background-color: #f0f0f0;
+      }
 
-        html {
-            line-height: 1.15;
-            -webkit-text-size-adjust: 100%;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-            background-color: #f0f0f0;
-        }
+      body {
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
 
-        body {
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
+      .header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
 
-        .header {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+      .header img {
+        width: 30px;
+        height: 30px;
+      }
 
-        .header img {
-            width: 30px;
-            height: 30px;
-        }
+      .centered-container {
+        background-color: white;
+        padding: 40px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        max-width: 700px;
+        width: 100%;
+      }
 
-        .centered-container {
-            background-color: white;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            max-width: 700px;
-            width: 100%;
-        }
+      h1 {
+        font-size: 2em;
+        margin: 0.67em 0;
+        color: #34495e;
+      }
 
-        h1 {
-            font-size: 2em;
-            margin: 0.67em 0;
-            color: #34495e;
-        }
+      a {
+        background-color: transparent;
+        color: #3498db;
+        text-decoration: none;
+      }
 
-        a {
-            background-color: transparent;
-            color: #3498db;
-            text-decoration: none;
-        }
+      a:hover {
+        text-decoration: underline;
+      }
 
-        a:hover {
-            text-decoration: underline;
-        }
+      p {
+        margin: 1em 0;
+        color: #2c3e50;
+      }
 
-        p {
-            margin: 1em 0;
-            color: #2c3e50;
-        }
+      ul {
+        margin: 1em 0;
+        padding: 0 0 0 40px;
+      }
 
-        ul {
-            margin: 1em 0;
-            padding: 0 0 0 40px;
-        }
+      li {
+        list-style-type: disc;
+        margin: 0 0 0.25em 0;
+        color: #2c3e50;
+      }
 
-        li {
-            list-style-type: disc;
-            margin: 0 0 0.25em 0;
-            color: #2c3e50;
-        }
-
-        .button {
+      .button {
         font-family: inherit;
         font-size: 100%;
         line-height: 1.15;
@@ -87,67 +88,91 @@
         border-radius: 4px;
         cursor: pointer;
         transition: background-color 0.3s;
-        }
+      }
 
-        .button.accept {
-            background-color: #3498db;
-        }
+      .button.accept {
+        background-color: #3498db;
+      }
 
-        .button.accept:hover {
-            background-color: #2980b9;
-        }
+      .button.accept:hover {
+        background-color: #2980b9;
+      }
 
-        .button.decline {
-            background-color: #e74c3c;
-        }
+      .button.decline {
+        background-color: #e74c3c;
+      }
 
-        .button.decline:hover {
-            background-color: #c0392b;
-        }
+      .button.decline:hover {
+        background-color: #c0392b;
+      }
 
-        .button::-moz-focus-inner {
-            border-style: none;
-            padding: 0;
-        }
+      .button::-moz-focus-inner {
+        border-style: none;
+        padding: 0;
+      }
 
-        .button:-moz-focusring {
-            outline: 1px dotted ButtonText;
-        }
+      .button:-moz-focusring {
+        outline: 1px dotted ButtonText;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="centered-container">
-        <div class="header">
-            <img src="./logo48.png" alt="SkyLink Logo">
-            <h1>SkyLink Privacy Policy</h1>
+      <div class="header">
+        <img src="./logo48.png" alt="SkyLink Logo">
+        <h1>SkyLink Privacy Policy</h1>
+      </div>
+      <p>
+        While <b>no information is collected by the extension author</b>, this
+        extension makes use of the
+        <a href="https://developers.google.com/speed/public-dns/"
+          >Google DNS service</a
+        >
+        for required functionality. The Google DNS service is used because
+        browser extensions do not have native access to DNS, which is needed to
+        lookup the AT Protocol TXT record.
+      </p>
+      <p>A summary of what is collected by Google DNS:</p>
+      <ul>
+        <li>The IP address of your device sending the DNS query</li>
+        <li>Requested domain name</li>
+        <li>Request type (TXT)</li>
+        <li>Request Size</li>
+        <li>Transport protocol (HTTPS)</li>
+        <li>Client's autonomous system number</li>
+        <li>
+          User's geolocation: country, region, and city (no more specific than 1
+          km² and 1000 users)
+        </li>
+        <li>DNS Response code</li>
+        <li>Google DNS server information</li>
+        <li>Timestamp</li>
+        <li>Processing time</li>
+        <li>Response DNS flags (including AD, CD, DO, RD, and TC)</li>
+        <li>Response size</li>
+        <li>EDNS version</li>
+        <li>EDNS option</li>
+        <li>
+          EDNS Client Subnet (ECS) (IP protocol and prefix length -- excluding
+          the client IP address)
+        </li>
+        <li>Version string corresponding to HTTP path (/resolve)</li>
+        <li>Response HTTP encoding, such as application/dns-message or json</li>
+      </ul>
+      <p>
+        Please read and accept the full
+        <a
+          href="https://developers.google.com/speed/public-dns/privacy"
+          target="_blank"
+          >Google DNS privacy policy</a
+        >
+        before using this extension.
+      </p>
+      <button class="button accept" id="accept">Accept (Continue)</button>
+      <button class="button decline" id="decline">
+        Decline (Uninstall Extension)
+      </button>
+      <script src="privacy_consent.js"></script>
     </div>
-    <p>While <b>no information is collected by the extension author</b>, this extension makes use of the <a href="https://developers.google.com/speed/public-dns/">Google DNS service</a> for required functionality. The Google DNS service is used because browser extensions do not have native access to DNS, which is needed to lookup the AT Protocol TXT record.</p>
-    <p>A summary of what is collected by Google DNS:
-        <ul>
-            <li>The IP address of your device sending the DNS query</li>
-            <li>Requested domain name</li>
-            <li>Request type (TXT)</li>
-            <li>Request Size</li>
-            <li>Transport protocol (HTTPS)</li>
-            <li>Client's autonomous system number</li>
-            <li>User's geolocation: country, region, and city (no more specific than 1 km² and 1000 users)</li>
-            <li>DNS Response code</li>
-            <li>Google DNS server information</li>
-            <li>Timestamp</li>
-            <li>Processing time</li>
-            <li>Response DNS flags (including AD, CD, DO, RD, and TC)</li>
-            <li>Response size</li>
-            <li>EDNS version</li>
-            <li>EDNS option</li>
-            <li>EDNS Client Subnet (ECS) (IP protocol and prefix length -- excluding the client IP address)</li>
-            <li>Version string corresponding to HTTP path (/resolve)</li>
-            <li>Response HTTP encoding, such as application/dns-message or json</li>
-          </ul>
-    </p>
-    <p>Please read and accept the full <a href="https://developers.google.com/speed/public-dns/privacy" target="_blank">Google DNS privacy policy</a> before using this extension.</p>
-    <button class="button accept" id="accept">Accept (Continue)</button>
-    <button class="button decline" id="decline">Decline (Uninstall Extension)</button>
-    <script src="privacy_consent.js"></script>
-    </div>
-</body>
+  </body>
 </html>
