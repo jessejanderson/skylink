@@ -3,28 +3,65 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Skylink Privacy Consent</title>
+    <title>Skylink Privacy Policy</title>
+
     <style>
       html {
         line-height: 1.15;
         -webkit-text-size-adjust: 100%;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+          "Segoe UI Symbol";
+        background-color: #f0f0f0;
       }
 
       body {
         margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+
+      .header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .header img {
+        width: 30px;
+        height: 30px;
+      }
+
+      .centered-container {
+        background-color: white;
+        padding: 40px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        max-width: 700px;
+        width: 100%;
       }
 
       h1 {
         font-size: 2em;
         margin: 0.67em 0;
+        color: #34495e;
       }
 
       a {
         background-color: transparent;
+        color: #3498db;
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
       }
 
       p {
         margin: 1em 0;
+        color: #2c3e50;
       }
 
       ul {
@@ -35,55 +72,69 @@
       li {
         list-style-type: disc;
         margin: 0 0 0.25em 0;
+        color: #2c3e50;
       }
 
-      button {
+      .button {
         font-family: inherit;
         font-size: 100%;
         line-height: 1.15;
-        margin: 0;
+        margin: 0.5em 0;
         overflow: visible;
         text-transform: none;
+        padding: 12px 24px;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s;
       }
 
-      button::-moz-focus-inner {
+      .button.accept {
+        background-color: #3498db;
+      }
+
+      .button.accept:hover {
+        background-color: #2980b9;
+      }
+
+      .button.decline {
+        background-color: #e74c3c;
+      }
+
+      .button.decline:hover {
+        background-color: #c0392b;
+      }
+
+      .button::-moz-focus-inner {
         border-style: none;
         padding: 0;
       }
 
-      button:-moz-focusring {
+      .button:-moz-focusring {
         outline: 1px dotted ButtonText;
-      }
-
-      .centered-container {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
       }
     </style>
   </head>
-
   <body>
     <div class="centered-container">
-      <h1>Privacy Consent for SkyLink - Bluesky DID Detector</h1>
+      <div class="header">
+        <img src="./logo48.png" alt="SkyLink Logo" />
+        <h1>SkyLink Privacy Policy</h1>
+      </div>
       <p>
         While <b>no information is collected by the extension author</b>, this
         extension makes use of the
         <a href="https://developers.google.com/speed/public-dns/"
           >Google DNS service</a
         >
-        for required functionality.
+        for required functionality. The Google DNS service is used because
+        browser extensions do not have native access to DNS, which is needed to
+        lookup the AT Protocol TXT record.
       </p>
-
-      <p>
-        The Google DNS service is used because browser extensions do not have
-        native access to DNS, which is needed to lookup the AT PROTO TXT record.
-      </p>
-
       <p>A summary of what is collected by Google DNS:</p>
       <ul>
-        <li>the IP address of your device sending the DNS query</li>
+        <li>The IP address of your device sending the DNS query</li>
         <li>Requested domain name</li>
         <li>Request type (TXT)</li>
         <li>Request Size</li>
@@ -109,15 +160,18 @@
         <li>Response HTTP encoding, such as application/dns-message or json</li>
       </ul>
       <p>
+        Please read and accept the full
         <a
           href="https://developers.google.com/speed/public-dns/privacy"
           target="_blank"
-          >Please Read and accept the full Google DNS privacy policy before
-          using this addon.</a
+          >Google DNS privacy policy</a
         >
+        before using this extension.
       </p>
-      <button id="accept">Accept (Continue)</button>
-      <button id="decline">Decline (Remove Extension)</button>
+      <button class="button accept" id="accept">Accept (Continue)</button>
+      <button class="button decline" id="decline">
+        Decline (Uninstall Extension)
+      </button>
       <script src="privacy_consent.js"></script>
     </div>
   </body>
