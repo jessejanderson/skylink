@@ -33,27 +33,27 @@ function performAction(privacyConsentAccepted) {
       return didRecord ? didRecord.data.replace("did=", "") : null;
     }
 
-    // We check for a DID on the current domain
-    (async function () {
-      const domain = getDomainName();
-      const did = await checkForDID(domain);
+      // We check for a DID on the current domain
+      ;(async function () {
+        const domain = getDomainName()
+        const did = await checkForDID(domain)
 
-      if (did) {
-        runtime.sendMessage({ type: "DID_FOUND", did });
-      } else {
-        runtime.sendMessage({ type: "DID_NOT_FOUND" });
-      }
-    })();
+        if (did) {
+          chrome.runtime.sendMessage({ type: "DID_FOUND", did })
+        } else {
+          chrome.runtime.sendMessage({ type: "DID_NOT_FOUND" })
+        }
+      })();
 
-    // We listen for messages from the background script
-    runtime.onMessage.addListener((message, sender, sendResponse) => {
-      if (message.type === "GET_DID") {
-        checkForDID(getDomainName())
-          .then((did) => sendResponse({ did }))
-          .catch(() => sendResponse({ did: null }))
-        return true // Indicate that the response will be sent asynchronously.
-      }
-    });
+      // We listen for messages from the background script
+      runtime.onMessage.addListener((message, sender, sendResponse) => {
+        if (message.type === "GET_DID") {
+          checkForDID(getDomainName())
+            .then((did) => sendResponse({ did }))
+            .catch(() => sendResponse({ did: null }))
+          return true // Indicate that the response will be sent asynchronously.
+        }
+      });
   } else {
     // Do nothing since the consent form has not been accepted.
     return;
