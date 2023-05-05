@@ -1,6 +1,7 @@
 # SkyLink - Bluesky DID Detector
 
 [![Chrome Web Store](https://img.shields.io/chrome-web-store/v/aflpfginfpjhanhkmdpohpggpolfopmb)](https://chrome.google.com/webstore/detail/skylink-bluesky-did-detector/aflpfginfpjhanhkmdpohpggpolfopmb)
+[![Firefox Add-ons](https://img.shields.io/amo/v/skylink-bluesky-did-detector)](https://addons.mozilla.org/en-US/firefox/addon/skylink-bluesky-did-detector)
 
 A simple web extension that detects if the current website is connected to a Bluesky user.
 
