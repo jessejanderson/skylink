@@ -1,3 +1,4 @@
+<!-- markdownlint-disable MD024 -->
 # Changelog
 
 All notable changes to this project will be documented in this file.
@@ -9,12 +10,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.2.0] - 2023-05-03
 
-- Adds support for Firefox
-- Adds privacy consent dialog for Google DNS (required by Mozilla)
+### Added
+
+- Support for Firefox
+- Privacy consent dialog for Google DNS (required by Mozilla)
+- Eslint and prettier config
 
 ## [1.1.0] - 2023-05-03
 
-- use DID for profile url instead of domain name
+### Changed
+
+- Use DID for profile url instead of domain name
 
 ## [1.0.1] - 2023-04-30
 
