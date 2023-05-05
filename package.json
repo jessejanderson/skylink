@@ -6,7 +6,9 @@
     "prettier": "^2.8.8"
   },
   "scripts": {
-    "lint": "eslint . --ext .js",
-    "format": "prettier --write ."
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "prettier:check": "prettier --check ."
   }
 }
