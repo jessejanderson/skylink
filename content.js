@@ -32,20 +32,15 @@ async function checkForDIDDNS(domain) {
 
 // Function to check for a DID in the well-known (not .well-known) location
 async function checkForDIDHTTPS(domain) {
-  const response = await fetch(
-    `https://${domain}/xrpc/com.atproto.identity.resolveHandle`
-  )
-
-  if (response.status === 200) {
-    try {
-      const data = await response.json()
-      return data.did
-    } catch (error) {
-      return null
-    }
+  try {
+    const response = await fetch(
+      `https://${domain}/xrpc/com.atproto.identity.resolveHandle`
+    )
+    const data = await response.json()
+    return data.did
+  } catch (error) {
+    return null
   }
-
-  return null
 }
 
 // Main function to perform actions, but only if the privacy consent has been accepted
