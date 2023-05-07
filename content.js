@@ -9,6 +9,7 @@ const storage =
 const MAX_DID_LENGTH = 1024
 
 // Regular expression to validate the DID format
+// https://w3c.github.io/did-core/#did-syntax
 const didRegex =
   /^did:plc:([a-zA-Z0-9._-]+(:[a-zA-Z0-9._-]+)*|((%[0-9A-Fa-f]{2})|[a-zA-Z0-9._-])+(:((%[0-9A-Fa-f]{2})|[a-zA-Z0-9._-])+)*$)/
 
