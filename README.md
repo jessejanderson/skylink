@@ -9,7 +9,7 @@ Remember the good 'ol days of visiting someone's blog and being delighted when t
 
 ![chrome_skyline_preview](https://user-images.githubusercontent.com/8367129/235382697-aedfda18-aab3-477b-b59c-c12cdd33bf9b.png)
 
-SkyLink works by detecting Decentralized Identifiers (DIDs) in a domain's TXT records and linking to the associated Bluesky profile.
+SkyLink works by detecting Decentralized Identifiers (DIDs) in a domain's TXT records as well as checking via the [alternative HTTPS method](https://psky.app/profile/emily.bsky.team/post/3juuaipn3q424) linking to the associated Bluesky profile.
 
 When a profile is detected, the icon lights up blue and clicking it will take you to their profile.
 
@@ -22,3 +22,4 @@ You can find me there at [@adhdjesse.com](https://staging.bsky.app/profile/adhdj
 **Contributors:**
 
 [@danielhuckmann.com](https://staging.bsky.app/profile/danielhuckmann.com) - Firefox Support & Privacy Consent
+[@aliceisjustplaying](https://staging.bsky.app/profile/alice.bsky.sh) - HTTPS Method of DID Detection
