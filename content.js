@@ -4,6 +4,14 @@ const runtime =
 const storage =
   typeof browser !== "undefined" ? browser.storage.local : chrome.storage.local
 
+// Regular expression to validate the DID format
+const didRegex = /^did:plc:[a-zA-Z0-9._-]+(:[a-zA-Z0-9._-]+)*$/
+
+// Function to validate the DID string
+function isValidDID(didString) {
+  return didRegex.test(didString)
+}
+
 // Function to get the domain name from the current hostname
 function getDomainName() {
   const hostname = window.location.hostname
@@ -26,8 +34,10 @@ async function checkForDIDDNS(domain) {
     record.data.includes("did=did:plc:")
   )
 
-  // We return the DID if we found one
-  return didRecord ? didRecord.data.replace("did=", "") : null
+  // We return the DID if we found one and it's valid
+  return didRecord && isValidDID(didRecord.data.replace("did=", ""))
+    ? didRecord.data.replace("did=", "")
+    : null
 }
 
 // Function to check for a DID in the well-known (not .well-known) location
@@ -37,7 +47,7 @@ async function checkForDIDHTTPS(domain) {
       `https://${domain}/xrpc/com.atproto.identity.resolveHandle`
     )
     const data = await response.json()
-    return data.did
+    return data.did && isValidDID(data.did) ? data.did : null
   } catch (error) {
     return null
   }
