@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Remove permissions for "tabs" as it is not needed
+- Remove permissions for "management" as it is not needed
 
 ## [1.2.0] - 2023-05-03
 
