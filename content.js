@@ -5,7 +5,8 @@ const storage =
   typeof browser !== "undefined" ? browser.storage.local : chrome.storage.local
 
 // Regular expression to validate the DID format
-const didRegex = /^did:plc:[a-zA-Z0-9._-]+(:[a-zA-Z0-9._-]+)*$/
+const didRegex =
+  /^did:plc:([a-zA-Z0-9._-]+(:[a-zA-Z0-9._-]+)*|((%[0-9A-Fa-f]{2})|[a-zA-Z0-9._-])+(:((%[0-9A-Fa-f]{2})|[a-zA-Z0-9._-])+)*$)/
 
 // Function to validate the DID string
 function isValidDID(didString) {
