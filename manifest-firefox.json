@@ -15,7 +15,7 @@
     "128": "logo128.png"
   },
   "description": "Detects Decentralized Identifiers (DIDs) in a domain's TXT records and links to the associated Bluesky profile.",
-  "permissions": ["activeTab", "management", "storage", "<all_urls>"],
+  "permissions": ["activeTab", "storage", "<all_urls>"],
   "content_security_policy": "script-src 'self'; object-src 'self'",
   "background": {
     "scripts": ["background.js"]
