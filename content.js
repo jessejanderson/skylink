@@ -4,9 +4,11 @@ const runtime =
 const storage =
   typeof browser !== "undefined" ? browser.storage.local : chrome.storage.local
 
-// Regular expression to validate the DID format
-// Make sure that we don't DoS the regex if someone supplies too large of a DID.
+// Make sure that we don't DoS the regex if someone supplies too large of a DID
+// 1024 was arbitratily chosen to limit performance impact, I couldn't find any specicied limits on DID length
 const MAX_DID_LENGTH = 1024
+
+// Regular expression to validate the DID format
 const didRegex =
   /^did:plc:([a-zA-Z0-9._-]+(:[a-zA-Z0-9._-]+)*|((%[0-9A-Fa-f]{2})|[a-zA-Z0-9._-])+(:((%[0-9A-Fa-f]{2})|[a-zA-Z0-9._-])+)*$)/
 
