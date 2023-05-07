@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Support for alternative HTTPS method for detecting DID
+- Input validation for domains and DIDs (security enhancement)
 
 ### Changed
 
