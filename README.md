@@ -21,5 +21,5 @@ You can find me there at [@adhdjesse.com](https://staging.bsky.app/profile/adhdj
 
 **Contributors:**
 
-[@danielhuckmann.com](https://staging.bsky.app/profile/danielhuckmann.com) - Firefox Support & Privacy Consent
-[@aliceisjustplaying](https://staging.bsky.app/profile/alice.bsky.sh) - HTTPS Method of DID Detection
+- [@danielhuckmann.com](https://staging.bsky.app/profile/danielhuckmann.com) - Firefox Support & Privacy Consent
+- [@aliceisjustplaying](https://staging.bsky.app/profile/alice.bsky.sh) - HTTPS Method of DID Detection
