@@ -5,8 +5,7 @@ const storage =
   typeof browser !== "undefined" ? browser.storage.local : chrome.storage.local
 
 // Make sure that we don't DoS the regex if someone supplies too large of a DID
-// 1024 was arbitratily chosen to limit performance impact, I couldn't find any specicied limits on DID length
-const MAX_DID_LENGTH = 1024
+const MAX_DID_LENGTH = 255
 
 // Regular expression to validate the DID format
 // https://w3c.github.io/did-core/#did-syntax
