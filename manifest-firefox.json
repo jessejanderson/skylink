@@ -18,7 +18,7 @@
   "permissions": ["tabs", "storage"],
   "content_security_policy": {
     "extension_pages": "script-src 'self'; object-src 'self'"
-   },
+  },
   "background": {
     "scripts": ["background.js"]
   },
