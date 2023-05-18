@@ -4,12 +4,8 @@ const runtime =
 const tabs = typeof browser !== "undefined" ? browser.tabs : chrome.tabs
 const storage =
   typeof browser !== "undefined" ? browser.storage.local : chrome.storage.local
-const action =
-  typeof browser !== "undefined" ? browser.browserAction : chrome.action
+const action = typeof browser !== "undefined" ? browser.action : chrome.action
 
-// The rest of the original background.js code...
-
-// Content.js code migrated to background.js
 // Make sure that we don't DoS the regex if someone supplies too large of a DID
 const MAX_DID_LENGTH = 255
 

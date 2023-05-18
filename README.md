@@ -15,11 +15,11 @@ When a profile is detected, the icon lights up blue and clicking it will take yo
 
 ---
 
-As of April 30, 2023, Bluesky is still invite-only and the web app is at https://staging.bsky.app.
+As of May 17, 2023, Bluesky is still invite-only and the web app is at https://bsky.app.
 
-You can find me there at [@adhdjesse.com](https://staging.bsky.app/profile/adhdjesse.com)
+You can find me there at [@adhdjesse.com](https://bsky.app/profile/adhdjesse.com)
 
 **Contributors:**
 
-- [@danielhuckmann.com](https://staging.bsky.app/profile/danielhuckmann.com) - Firefox Support & Privacy Consent
-- [@aliceisjustplaying](https://staging.bsky.app/profile/alice.bsky.sh) - HTTPS Method of DID Detection
+- [@danielhuckmann.com](https://bsky.app/profile/danielhuckmann.com) - Firefox Support, Privacy & Security Enhancements
+- [@aliceisjustplaying](https://bsky.app/profile/alice.bsky.sh) - HTTPS Method of DID Detection
