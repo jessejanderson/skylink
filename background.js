@@ -136,13 +136,9 @@ function performAction(tab) {
   })
 }
 
-// Execute performAction when a tab is updated and the tab is a website.
+// Execute performAction when a tab is updated
 tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
-  if (
-    changeInfo.status === "complete" &&
-    tab.active &&
-    (tab.url.startsWith("http://") || tab.url.startsWith("https://"))
-  ) {
+  if (changeInfo.status === "complete" && tab.active) {
     performAction(tab)
   }
 })
