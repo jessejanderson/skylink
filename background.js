@@ -147,7 +147,7 @@ function setDID(tab, did) {
 // Execute performAction when a tab is updated and the tab is a website.
 tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
   if (
-    changeInfo.status === "complete" &&
+    changeInfo.status === "loading" &&
     tab.active &&
     (tab.url.startsWith("http://") || tab.url.startsWith("https://"))
   ) {
