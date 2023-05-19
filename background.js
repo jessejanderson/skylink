@@ -103,7 +103,6 @@ function setIcon(tabId, iconName) {
 // The cache is cleared when the tab is closed
 const didCache = new Map()
 
-// Main function to perform actions, but only if the privacy consent has been accepted
 function performAction(tab) {
   storage.get("privacyConsentAccepted", ({ privacyConsentAccepted }) => {
     if (privacyConsentAccepted) {
@@ -112,8 +111,13 @@ function performAction(tab) {
         // Check if we have cached DID for this tab and domain
         const cachedDID = didCache.get(`${tab.id}:${domain}`)
         if (cachedDID !== undefined) {
-          // If we have a cached DID, use it
-          setDID(tab, cachedDID)
+          // If we have a cached DID or a cached "not found" state, use it
+          if (cachedDID !== null) {
+            setDID(tab, cachedDID)
+          } else {
+            setIcon(tab.id, "logo48_gray.png")
+            tabsWithDID.delete(tab.id)
+          }
         } else {
           // If not, proceed with the checks
           checkForDIDDNS(domain).then((domainDID) => {
@@ -128,6 +132,8 @@ function performAction(tab) {
                 } else {
                   setIcon(tab.id, "logo48_gray.png")
                   tabsWithDID.delete(tab.id)
+                  // Cache the "not found" state
+                  didCache.set(`${tab.id}:${domain}`, null)
                 }
               })
             }
