@@ -97,32 +97,51 @@ function setIcon(tabId, iconName) {
   action.setIcon({ path: iconName, tabId })
 }
 
+// Cache for storing domain DIDs
+// We use caching to prevent creating multiple requests
+// for a tab/domain that has already returned a check
+// The cache is cleared when the tab is closed
+const didCache = new Map()
+
 // Main function to perform actions, but only if the privacy consent has been accepted
 function performAction(tab) {
   storage.get("privacyConsentAccepted", ({ privacyConsentAccepted }) => {
-    // If the user has accepted the privacy consent
     if (privacyConsentAccepted) {
       const domain = getDomainName(tab.url)
       if (isValidDomain(domain)) {
-        checkForDIDDNS(domain).then((domainDID) => {
-          if (domainDID) {
-            setIcon(tab.id, "logo48.png")
-            tabsWithDID.set(tab.id, domainDID)
-          } else {
-            checkForDIDHTTPS(domain).then((httpsDID) => {
-              if (httpsDID) {
-                setIcon(tab.id, "logo48.png")
-                tabsWithDID.set(tab.id, httpsDID)
-              } else {
-                setIcon(tab.id, "logo48_gray.png")
-                tabsWithDID.delete(tab.id)
-              }
-            })
-          }
-        })
+        // Check if we have cached DID for this tab and domain
+        const cachedDID = didCache.get(`${tab.id}:${domain}`)
+        if (cachedDID !== undefined) {
+          // If we have a cached DID, use it
+          setDID(tab, cachedDID)
+        } else {
+          // If not, proceed with the checks
+          checkForDIDDNS(domain).then((domainDID) => {
+            if (domainDID) {
+              setDID(tab, domainDID)
+              didCache.set(`${tab.id}:${domain}`, domainDID)
+            } else {
+              checkForDIDHTTPS(domain).then((httpsDID) => {
+                if (httpsDID) {
+                  setDID(tab, httpsDID)
+                  didCache.set(`${tab.id}:${domain}`, httpsDID)
+                } else {
+                  setIcon(tab.id, "logo48_gray.png")
+                  tabsWithDID.delete(tab.id)
+                }
+              })
+            }
+          })
+        }
       }
     }
   })
+}
+
+// Function to set the DID
+function setDID(tab, did) {
+  setIcon(tab.id, "logo48.png")
+  tabsWithDID.set(tab.id, did)
 }
 
 // Execute performAction when a tab is updated and the tab is a website.
@@ -132,6 +151,19 @@ tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
     tab.active &&
     (tab.url.startsWith("http://") || tab.url.startsWith("https://"))
   ) {
+    // Get the old domain from the cache
+    const oldDomain = Array.from(didCache.keys())
+      .filter((key) => key.startsWith(`${tabId}:`))
+      .map((key) => key.split(":")[1])[0]
+
+    // Get the new domain
+    const newDomain = getDomainName(tab.url)
+
+    // If the domain has changed, clear the DID state for this tab
+    if (newDomain !== oldDomain) {
+      didCache.delete(`${tabId}:${oldDomain}`)
+    }
+    // Perform the action
     performAction(tab)
   }
 })
