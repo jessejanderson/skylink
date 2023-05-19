@@ -97,11 +97,6 @@ function setIcon(tabId, iconName) {
   action.setIcon({ path: iconName, tabId })
 }
 
-// Map to store the last domain of each tab
-// This is used below to prevent triggering
-// peformAction unless the domain of a tab changes
-const tabsWithLastDomain = new Map()
-
 // Main function to perform actions, but only if the privacy consent has been accepted
 function performAction(tab) {
   storage.get("privacyConsentAccepted", ({ privacyConsentAccepted }) => {
@@ -109,28 +104,22 @@ function performAction(tab) {
     if (privacyConsentAccepted) {
       const domain = getDomainName(tab.url)
       if (isValidDomain(domain)) {
-        const lastDomain = tabsWithLastDomain.get(tab.id)
-        if (domain !== lastDomain) {
-          // Update the last domain of the tab
-          tabsWithLastDomain.set(tab.id, domain)
-          // Check for DIDs
-          checkForDIDDNS(domain).then((domainDID) => {
-            if (domainDID) {
-              setIcon(tab.id, "logo48.png")
-              tabsWithDID.set(tab.id, domainDID)
-            } else {
-              checkForDIDHTTPS(domain).then((httpsDID) => {
-                if (httpsDID) {
-                  setIcon(tab.id, "logo48.png")
-                  tabsWithDID.set(tab.id, httpsDID)
-                } else {
-                  setIcon(tab.id, "logo48_gray.png")
-                  tabsWithDID.delete(tab.id)
-                }
-              })
-            }
-          })
-        }
+        checkForDIDDNS(domain).then((domainDID) => {
+          if (domainDID) {
+            setIcon(tab.id, "logo48.png")
+            tabsWithDID.set(tab.id, domainDID)
+          } else {
+            checkForDIDHTTPS(domain).then((httpsDID) => {
+              if (httpsDID) {
+                setIcon(tab.id, "logo48.png")
+                tabsWithDID.set(tab.id, httpsDID)
+              } else {
+                setIcon(tab.id, "logo48_gray.png")
+                tabsWithDID.delete(tab.id)
+              }
+            })
+          }
+        })
       }
     }
   })
