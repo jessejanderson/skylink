@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.4.0]
+
+### Changed
+
 - Migrate/refactor everything from `content.js` into a self-contained `background.js`
 - Swap `activeTab` permission for `tabs` so that we can drop the `<all_urls>` permission
 - Remove permissions for "management" as it is not needed
