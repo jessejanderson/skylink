@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.4.1]
+
+### Fixed
+
 - Small fix for a bug introduced in `1.4.0` that occurs when the browser puts idle extensions to sleep
 
 ## [1.4.0]
