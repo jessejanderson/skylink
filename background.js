@@ -103,29 +103,34 @@ function setIcon(tabId, iconName) {
 // The cache is cleared when the tab is closed
 const didCache = new Map()
 
-function performAction(tab) {
-  storage.get("privacyConsentAccepted", ({ privacyConsentAccepted }) => {
-    if (privacyConsentAccepted) {
-      const domain = getDomainName(tab.url)
-      if (isValidDomain(domain)) {
-        // Check if we have cached DID for this tab and domain
-        const cachedDID = didCache.get(`${tab.id}:${domain}`)
-        if (cachedDID !== undefined) {
-          // If we have a cached DID or a cached "not found" state, use it
-          if (cachedDID !== null) {
-            setDID(tab, cachedDID)
-          } else {
-            setIcon(tab.id, "logo48_gray.png")
-            tabsWithDID.delete(tab.id)
-          }
-        } else {
-          // If not, proceed with the checks
-          checkForDIDDNS(domain).then((domainDID) => {
-            if (domainDID) {
-              setDID(tab, domainDID)
-              didCache.set(`${tab.id}:${domain}`, domainDID)
+async function performAction(tab) {
+  return new Promise((resolve, reject) => {
+    storage.get(
+      "privacyConsentAccepted",
+      async ({ privacyConsentAccepted }) => {
+        if (privacyConsentAccepted) {
+          const domain = getDomainName(tab.url)
+          if (isValidDomain(domain)) {
+            // Check if we have cached DID for this tab and domain
+            const cachedDID = didCache.get(`${tab.id}:${domain}`)
+            if (cachedDID !== undefined) {
+              // If we have a cached DID or a cached "not found" state, use it
+              if (cachedDID !== null) {
+                setDID(tab, cachedDID)
+              } else {
+                setIcon(tab.id, "logo48_gray.png")
+                tabsWithDID.delete(tab.id)
+              }
+              resolve()
             } else {
-              checkForDIDHTTPS(domain).then((httpsDID) => {
+              // If not, proceed with the checks
+              const domainDID = await checkForDIDDNS(domain)
+              if (domainDID) {
+                setDID(tab, domainDID)
+                didCache.set(`${tab.id}:${domain}`, domainDID)
+                resolve()
+              } else {
+                const httpsDID = await checkForDIDHTTPS(domain)
                 if (httpsDID) {
                   setDID(tab, httpsDID)
                   didCache.set(`${tab.id}:${domain}`, httpsDID)
@@ -135,12 +140,17 @@ function performAction(tab) {
                   // Cache the "not found" state
                   didCache.set(`${tab.id}:${domain}`, null)
                 }
-              })
+                resolve()
+              }
             }
-          })
+          } else {
+            reject(new Error("Invalid domain"))
+          }
+        } else {
+          reject(new Error("Privacy consent not accepted"))
         }
       }
-    }
+    )
   })
 }
 
@@ -193,23 +203,36 @@ runtime.onInstalled.addListener(() => {
   })
 })
 
-// Open the consent page if it hasn't been accepted and the user clicks on the extension icon
-action.onClicked.addListener(() => {
+// When the extension icon is clicked
+action.onClicked.addListener((tab) => {
+  // Get privacyConsentAccepted from storage
   storage.get("privacyConsentAccepted", ({ privacyConsentAccepted }) => {
+    // If privacyConsentAccepted is undefined or false, open the consent page
     if (
       typeof privacyConsentAccepted === "undefined" ||
       !privacyConsentAccepted
     ) {
       tabs.create({ url: "privacy_consent.html" })
+    } else {
+      // If there is a DID for this tab, open the profile page
+      const did = tabsWithDID.get(tab.id)
+      if (did) {
+        const newUrl = `${bskyAppUrl}/profile/${did}`
+        tabs.create({ url: newUrl })
+      } else {
+        // If there is no DID for this tab in cache, run performAction
+        const domain = getDomainName(tab.url)
+        if (isValidDomain(domain)) {
+          performAction(tab).then(() => {
+            // If performAction returned a DID, open the profile page
+            const didAfterPerformingAction = tabsWithDID.get(tab.id)
+            if (didAfterPerformingAction) {
+              const newUrl = `${bskyAppUrl}/profile/${didAfterPerformingAction}`
+              tabs.create({ url: newUrl })
+            }
+          })
+        }
+      }
     }
   })
-})
-
-// When the extension icon is clicked, open the profile page if there's a DID
-action.onClicked.addListener((tab) => {
-  const did = tabsWithDID.get(tab.id)
-  if (did) {
-    const newUrl = `${bskyAppUrl}/profile/${did}`
-    tabs.create({ url: newUrl })
-  }
 })
