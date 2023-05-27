@@ -77,8 +77,8 @@ async function checkForDIDHTTPS(domain) {
     if (!response.headers.get("Content-Type")?.includes("text/plain")) {
       throw new Error("Invalid Content-Type")
     }
-    const data = await response.json()
-    return data.did && isValidDID(data.did) ? data.did : null
+    const data = await response.text()
+    return data.did && isValidDID(data) ? data : null
   } catch (error) {
     return null
   }
