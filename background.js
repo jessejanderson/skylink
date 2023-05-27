@@ -72,11 +72,9 @@ async function checkForDIDDNS(domain) {
 // Function to check for a DID in the well-known (not .well-known) location
 async function checkForDIDHTTPS(domain) {
   try {
-    const response = await fetch(
-      `https://${domain}/xrpc/com.atproto.identity.resolveHandle`
-    )
+    const response = await fetch(`https://${domain}/.well-known/atproto-did`)
 
-    if (!response.headers.get("Content-Type")?.includes("application/json")) {
+    if (!response.headers.get("Content-Type")?.includes("text/plain")) {
       throw new Error("Invalid Content-Type")
     }
     const data = await response.json()
