@@ -69,7 +69,7 @@ async function checkForDIDDNS(domain) {
   }
 }
 
-// Function to check for a DID in the well-known (not .well-known) location
+// Function to check for a DID in the well-known location
 async function checkForDIDHTTPS(domain) {
   try {
     const response = await fetch(`https://${domain}/.well-known/atproto-did`)
@@ -78,7 +78,7 @@ async function checkForDIDHTTPS(domain) {
       throw new Error("Invalid Content-Type")
     }
     const data = await response.text()
-    return data.did && isValidDID(data) ? data : null
+    return data && isValidDID(data) ? data : null
   } catch (error) {
     return null
   }
