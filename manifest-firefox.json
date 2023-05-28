@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "SkyLink - Bluesky DID Detector",
   "short_name": "SkyLink",
-  "version": "1.4.0",
+  "version": "1.4.2",
   "author": "jesse@adhdjesse.com",
   "action": {
     "default_icon": {
