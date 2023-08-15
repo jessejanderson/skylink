@@ -3,7 +3,7 @@
     "eslint": "^8.41.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-prettier": "^4.2.1",
-    "prettier": "^2.8.8"
+    "prettier": "^3.0.2"
   },
   "scripts": {
     "lint": "eslint .",
