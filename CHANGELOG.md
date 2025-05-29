@@ -9,6 +9,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.4.3] - 2025-05-28
+
+### Fixed
+
+- Fixed `.well-known/atproto-did` detection by adding required `host_permissions` to manifest files
+- Improved error handling and content-type validation for HTTPS DID fetching
+- Added whitespace trimming for DID values from `.well-known` files
+
+### Changed
+
+- Updated manifest descriptions to explicitly mention both DID detection methods
+- Updated README to reflect current Bluesky status (now open to everyone)
+
 ## [1.4.2]
 
 - Updated the HTTPS method for detecting DID to use the new path (`/.well-known/atproto-did`) and format (served as `text/plain` and just the DID itself)
