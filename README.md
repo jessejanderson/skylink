@@ -9,13 +9,18 @@ Remember the good 'ol days of visiting someone's blog and being delighted when t
 
 ![chrome_skyline_preview](https://user-images.githubusercontent.com/8367129/235382697-aedfda18-aab3-477b-b59c-c12cdd33bf9b.png)
 
-SkyLink works by detecting Decentralized Identifiers (DIDs) in a domain's TXT records as well as checking via the [alternative HTTPS method](https://psky.app/profile/emily.bsky.team/post/3juuaipn3q424) linking to the associated Bluesky profile.
+## How it Works
 
-When a profile is detected, the icon lights up blue and clicking it will take you to their profile.
+SkyLink detects Decentralized Identifiers (DIDs) by checking both:
+
+1. **DNS TXT Records**: Looking for a DID in the `_atproto` subdomain's TXT records
+2. **HTTPS Well-Known**: Checking via the [alternative HTTPS method](https://psky.app/profile/emily.bsky.team/post/3juuaipn3q424) at `/.well-known/atproto-did`
+
+When a profile is detected, the extension icon lights up blue. Click it to visit their Bluesky profile!
 
 ---
 
-As of May 17, 2023, Bluesky is still invite-only and the web app is at https://bsky.app.
+Bluesky is now open to everyone! The web app is at https://bsky.app.
 
 You can find me there at [@adhdjesse.com](https://bsky.app/profile/adhdjesse.com)
 
