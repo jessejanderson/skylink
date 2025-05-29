@@ -74,12 +74,29 @@ async function checkForDIDHTTPS(domain) {
   try {
     const response = await fetch(`https://${domain}/.well-known/atproto-did`)
 
-    if (!response.headers.get("Content-Type")?.includes("text/plain")) {
-      throw new Error("Invalid Content-Type")
+    // Check if the response is successful
+    if (!response.ok) {
+      return null
     }
+
+    // The content type check is optional since some servers might not set it correctly
+    const contentType = response.headers.get("Content-Type")
+    if (contentType && !contentType.includes("text/plain")) {
+      console.warn(
+        `Warning: .well-known/atproto-did has unexpected Content-Type: ${contentType}`
+      )
+    }
+
     const data = await response.text()
-    return data && isValidDID(data) ? data : null
+    // Trim whitespace that might be present
+    const trimmedData = data?.trim()
+    return trimmedData && isValidDID(trimmedData) ? trimmedData : null
   } catch (error) {
+    // Log error for debugging but don't expose it to the user
+    console.debug(
+      `Failed to fetch .well-known/atproto-did for ${domain}:`,
+      error
+    )
     return null
   }
 }
