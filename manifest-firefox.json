@@ -21,7 +21,8 @@
     "extension_pages": "script-src 'self'; object-src 'self'"
   },
   "background": {
-    "scripts": ["background.js"]
+    "scripts": ["background.js"],
+    "persistent": false
   },
   "browser_specific_settings": {
     "gecko": {
